@@ -1,8 +1,8 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import React from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Logo from "./Logo";
-
+import Modal from "react-native-modal";
 interface Props {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -11,12 +11,10 @@ interface Props {
 const LoginModal = ({ isOpen, setIsOpen }: Props) => {
   return (
     <Modal
-      visible={isOpen}
-      animationType="fade"
-      transparent={true}
-      onRequestClose={() => setIsOpen(false)}
+      isVisible={isOpen}
+      onBackdropPress={() => setIsOpen(false)}
+      style={{ margin: 0, alignItems: 'center' }}
     >
-      <View className="flex-1 bg-black/60 justify-center items-center">
         <View className="w-[94%] bg-black rounded-xl p-6 border-four border-[1px]">
           <View className="items-end">
             <TouchableOpacity
@@ -51,7 +49,6 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
             <Text className="text-black">Login</Text>
           </TouchableOpacity>
         </View>
-      </View>
     </Modal>
   );
 };

@@ -1,6 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import React from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import Modal from "react-native-modal";
 import Logo from "./Logo";
 
 interface Props {
@@ -11,46 +12,41 @@ interface Props {
 const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
   return (
     <Modal
-      visible={isOpen}
-      animationType="fade"
-      transparent={true}
-      onRequestClose={() => setIsOpen(false)}
+      isVisible={isOpen}
+      onBackdropPress={() => setIsOpen(false)}
+      style={{ margin: 0, alignItems: "center" }}
     >
-      <View className="flex-1 bg-black/60 justify-center items-center">
-        <View className="w-[94%] bg-black rounded-xl p-6 border-four border-[1px]">
-          <View className="items-end">
-            <TouchableOpacity
-              onPress={() => setIsOpen(false)}
-              className="w-8 h-8 justify-center items-center"
-            >
-              <AntDesign name="close" size={14} color="white" />
-            </TouchableOpacity>
-          </View>
-          <View className="items-center mb-10">
-            <Logo></Logo>
-            <Text className="text-white text-xl mt-5">Welcome</Text>
-            <Text className="text-five">
-              Enter your credentials to continue.
-            </Text>
-          </View>
-          <Text className="text-white">Email / Username</Text>
-          <TextInput
-            className="bg-two border-four border-[1px] rounded-xl mt-1 mb-2 text-white px-2"
-            placeholder="Email/Username"
-          ></TextInput>
-          <Text className="text-white mt-2">Password</Text>
-          <TextInput
-            className="bg-two border-four border-[1px] rounded-xl mt-1 mb-2 text-white px-2"
-            secureTextEntry
-            placeholder="Password"
-          ></TextInput>
+      <View className="w-[94%] bg-black rounded-xl p-6 border-four border-[1px]">
+        <View className="items-end">
           <TouchableOpacity
-            className="border-four border-[0.7px] p-2 rounded-xl items-center mt-6 bg-white"
             onPress={() => setIsOpen(false)}
+            className="w-8 h-8 justify-center items-center"
           >
-            <Text className="text-black">Create Account</Text>
+            <AntDesign name="close" size={14} color="white" />
           </TouchableOpacity>
         </View>
+        <View className="items-center mb-10">
+          <Logo></Logo>
+          <Text className="text-white text-xl mt-5">Welcome</Text>
+          <Text className="text-five">Enter your credentials to continue.</Text>
+        </View>
+        <Text className="text-white">Email / Username</Text>
+        <TextInput
+          className="bg-two border-four border-[1px] rounded-xl mt-1 mb-2 text-white px-2"
+          placeholder="Email/Username"
+        ></TextInput>
+        <Text className="text-white mt-2">Password</Text>
+        <TextInput
+          className="bg-two border-four border-[1px] rounded-xl mt-1 mb-2 text-white px-2"
+          secureTextEntry
+          placeholder="Password"
+        ></TextInput>
+        <TouchableOpacity
+          className="border-four border-[0.7px] p-2 rounded-xl items-center mt-6 bg-white"
+          onPress={() => setIsOpen(false)}
+        >
+          <Text className="text-black">Create Account</Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );
